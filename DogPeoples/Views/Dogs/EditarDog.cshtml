@@ -1,0 +1,19 @@
+﻿@{
+    Business.Dogs dog = ViewBag.Dogs;
+}
+<div class="jumbotron">
+    <h3>Novo Cão</h3>
+    <div>
+        <a href="/Dogs" class="btn btn-default">Voltar</a>
+    </div>
+
+    <form action="/Dogs/@dog.Id/AlterarDog" method="post">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="dog" value="@dog.Nome" name="nome">
+            <label for="raca">Raça:</label>
+            <input type="text" class="form-control" id="raca" value="@dog.Raca" name="raca">
+        </div>
+        <button type="submit" class="btn btn-default">Alterar</button>
+    </form>
+</div>

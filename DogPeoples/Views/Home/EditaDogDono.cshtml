@@ -1,0 +1,49 @@
+﻿@{
+    var TesteDonoId = ViewBag.DonoId;
+    List<Business.DogsDonos> listaDogs = ViewBag.DogsDonos;
+    Business.Dono dono = ViewBag.Dono;
+
+}
+
+@if (TempData["Sucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">@TempData["Sucesso"]</div>
+}
+@if (TempData["Erro"] != null)
+{
+    <div class="alert alert-danger" role="alert">@TempData["Erro"]</div>
+}
+<div class="jumbotron">
+
+    Dogs :
+    @using (Html.BeginForm())
+    {
+        @Html.DropDownList("DogId", "Selecione o Dog")
+        <input type="hidden" name="DonoId" value=@TesteDonoId />
+        <input type="submit" value="Relacionar" />
+    }
+
+<h3>Dogs de @dono.Nome</h3>
+    <table class="table">
+        <tr>
+            <td>IdDog</td>
+            <td>Nome Dog</td>
+            <td>Nome Dono</td>
+        </tr>
+        @foreach (var d in listaDogs)
+        {
+    <tr>
+        <td>@d.IdDog </td>
+        <td>@d.NomeDog</td>
+        <td>@d.NomeDono</td>
+        <td>
+            <a href="/home/@d.IdDono/@d.IdDog/ExcluirDogDono" class="btn btn-danger" onclick="ValidaExclusao(@d.NomeDog, event)">Excluir</a>
+        </td>
+    </tr>
+        }
+    </table>
+
+
+
+</div>
+

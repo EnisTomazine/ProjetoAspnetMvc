@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    List<Business.Dogs> dogs = ViewBag.Dogs;
+}
+
+@if (TempData["Sucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">@TempData["Sucesso"]</div>
+}
+@if (TempData["Erro"] != null)
+{
+    <div class="alert alert-danger" role="alert">@TempData["Erro"]</div>
+}
+<div class="jumbotron">
+    <h3>Dogs</h3>
+    <div>
+        <a href="/Dogs/NovoDog" class="btn btn-default">Cadastrar</a>
+    </div>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Raça</td>
+        </tr>
+        @foreach (var c in dogs)
+        {
+    <tr>
+        <td>@c.Id </td>
+        <td>@c.Nome</td>
+        <td>@c.Raca</td>
+        <td>
+            <a href="/Dogs/@c.Id/EditarDog" class="btn btn-primary">Alterar</a>
+        </td>
+        <td>
+            <a href="/Dogs/@c.Id/ExcluirDog" class="btn btn-danger" onclick="ValidaExclusao(@c.Id, event)">Excluir</a>
+        </td>
+
+    </tr>
+        }
+    </table>
+</div>
